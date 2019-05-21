@@ -17,9 +17,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
     #基本属性
-    username: root
-    password: 17B92f93756a
-    url: jdbc:mysql://47.107.115.243:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: XXXX    //mysql 帐号
+    password: XXXX    //mysql 密码
+    url: XXXXXX       //连接地址
 
     #配置初始化大小/最小/最大
     initial-size: 1
@@ -42,8 +42,8 @@ spring:
   # redis配置，以下有默认配置的也可以使用默认配置
   redis:
     database: 0
-    host: 47.107.115.243
-    password: zy824414828
+    host: XXXXX   地址
+    password: XXXXX  //redis 密码
     port: 6379
     timeout: 5000
     jedis:
