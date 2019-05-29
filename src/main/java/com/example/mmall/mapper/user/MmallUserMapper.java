@@ -19,7 +19,7 @@ public interface MmallUserMapper {
 
     List<MmallUser> getUserInfoList();
 
-    int checkUsername(String username);
+    MmallUser checkUsername(String username);
 
     MmallUser getUserInfo(int userId);
 

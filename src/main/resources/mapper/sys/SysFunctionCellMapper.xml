@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mmall.mapper.sys.SysFunctionCellMapper" >
+  <resultMap id="BaseResultMap" type="com.example.mmall.model.sys.SysFunctionCell" >
+    <id column="fuce_id" property="fuceId" jdbcType="VARCHAR" />
+    <result column="fuce_code" property="fuceCode" jdbcType="VARCHAR" />
+    <result column="fuce_name" property="fuceName" jdbcType="VARCHAR" />
+    <result column="fuce_level" property="fuceLevel" jdbcType="CHAR" />
+    <result column="fuce_desc" property="fuceDesc" jdbcType="VARCHAR" />
+    <result column="fuce_resource" property="fuceResource" jdbcType="VARCHAR" />
+    <result column="fuce_icon" property="fuceIcon" jdbcType="VARCHAR" />
+    <result column="fuce_index" property="fuceIndex" jdbcType="VARCHAR" />
+    <result column="fuce_modify_user" property="fuceModifyUser" jdbcType="VARCHAR" />
+    <result column="fuce_modify_time" property="fuceModifyTime" jdbcType="VARCHAR" />
+    <result column="fuce_creator_user" property="fuceCreatorUser" jdbcType="VARCHAR" />
+    <result column="fuce_create_time" property="fuceCreateTime" jdbcType="VARCHAR" />
+    <result column="fuce_parent_code" property="fuceParentCode" jdbcType="VARCHAR" />
+    <result column="d_flag" property="dFlag" jdbcType="INTEGER" />
+    <result column="show_info" property="showInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fuce_id, fuce_code, fuce_name, fuce_level, fuce_desc, fuce_resource, fuce_icon, fuce_index, 
+    fuce_modify_user, fuce_modify_time, fuce_creator_user, fuce_create_time, fuce_parent_code, 
+    d_flag, show_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mmall_sys_function_cell
+    where fuce_id = #{fuceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mmall_sys_function_cell
+    where fuce_id = #{fuceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mmall.model.sys.SysFunctionCell" >
+    insert into mmall_sys_function_cell (fuce_id, fuce_code, fuce_name, 
+      fuce_level, fuce_desc, fuce_resource, 
+      fuce_icon, fuce_index, fuce_modify_user, 
+      fuce_modify_time, fuce_creator_user, fuce_create_time, 
+      fuce_parent_code, d_flag, show_info
+      )
+    values (#{fuceId,jdbcType=VARCHAR}, #{fuceCode,jdbcType=VARCHAR}, #{fuceName,jdbcType=VARCHAR}, 
+      #{fuceLevel,jdbcType=CHAR}, #{fuceDesc,jdbcType=VARCHAR}, #{fuceResource,jdbcType=VARCHAR}, 
+      #{fuceIcon,jdbcType=VARCHAR}, #{fuceIndex,jdbcType=VARCHAR}, #{fuceModifyUser,jdbcType=VARCHAR}, 
+      #{fuceModifyTime,jdbcType=VARCHAR}, #{fuceCreatorUser,jdbcType=VARCHAR}, #{fuceCreateTime,jdbcType=VARCHAR}, 
+      #{fuceParentCode,jdbcType=VARCHAR}, #{dFlag,jdbcType=INTEGER}, #{showInfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mmall.model.sys.SysFunctionCell" >
+    insert into mmall_sys_function_cell
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fuceId != null" >
+        fuce_id,
+      </if>
+      <if test="fuceCode != null" >
+        fuce_code,
+      </if>
+      <if test="fuceName != null" >
+        fuce_name,
+      </if>
+      <if test="fuceLevel != null" >
+        fuce_level,
+      </if>
+      <if test="fuceDesc != null" >
+        fuce_desc,
+      </if>
+      <if test="fuceResource != null" >
+        fuce_resource,
+      </if>
+      <if test="fuceIcon != null" >
+        fuce_icon,
+      </if>
+      <if test="fuceIndex != null" >
+        fuce_index,
+      </if>
+      <if test="fuceModifyUser != null" >
+        fuce_modify_user,
+      </if>
+      <if test="fuceModifyTime != null" >
+        fuce_modify_time,
+      </if>
+      <if test="fuceCreatorUser != null" >
+        fuce_creator_user,
+      </if>
+      <if test="fuceCreateTime != null" >
+        fuce_create_time,
+      </if>
+      <if test="fuceParentCode != null" >
+        fuce_parent_code,
+      </if>
+      <if test="dFlag != null" >
+        d_flag,
+      </if>
+      <if test="showInfo != null" >
+        show_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fuceId != null" >
+        #{fuceId,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceCode != null" >
+        #{fuceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceName != null" >
+        #{fuceName,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceLevel != null" >
+        #{fuceLevel,jdbcType=CHAR},
+      </if>
+      <if test="fuceDesc != null" >
+        #{fuceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceResource != null" >
+        #{fuceResource,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceIcon != null" >
+        #{fuceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceIndex != null" >
+        #{fuceIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceModifyUser != null" >
+        #{fuceModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceModifyTime != null" >
+        #{fuceModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceCreatorUser != null" >
+        #{fuceCreatorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceCreateTime != null" >
+        #{fuceCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceParentCode != null" >
+        #{fuceParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dFlag != null" >
+        #{dFlag,jdbcType=INTEGER},
+      </if>
+      <if test="showInfo != null" >
+        #{showInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mmall.model.sys.SysFunctionCell" >
+    update mmall_sys_function_cell
+    <set >
+      <if test="fuceCode != null" >
+        fuce_code = #{fuceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceName != null" >
+        fuce_name = #{fuceName,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceLevel != null" >
+        fuce_level = #{fuceLevel,jdbcType=CHAR},
+      </if>
+      <if test="fuceDesc != null" >
+        fuce_desc = #{fuceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceResource != null" >
+        fuce_resource = #{fuceResource,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceIcon != null" >
+        fuce_icon = #{fuceIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceIndex != null" >
+        fuce_index = #{fuceIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceModifyUser != null" >
+        fuce_modify_user = #{fuceModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceModifyTime != null" >
+        fuce_modify_time = #{fuceModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceCreatorUser != null" >
+        fuce_creator_user = #{fuceCreatorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceCreateTime != null" >
+        fuce_create_time = #{fuceCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fuceParentCode != null" >
+        fuce_parent_code = #{fuceParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dFlag != null" >
+        d_flag = #{dFlag,jdbcType=INTEGER},
+      </if>
+      <if test="showInfo != null" >
+        show_info = #{showInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fuce_id = #{fuceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mmall.model.sys.SysFunctionCell" >
+    update mmall_sys_function_cell
+    set fuce_code = #{fuceCode,jdbcType=VARCHAR},
+      fuce_name = #{fuceName,jdbcType=VARCHAR},
+      fuce_level = #{fuceLevel,jdbcType=CHAR},
+      fuce_desc = #{fuceDesc,jdbcType=VARCHAR},
+      fuce_resource = #{fuceResource,jdbcType=VARCHAR},
+      fuce_icon = #{fuceIcon,jdbcType=VARCHAR},
+      fuce_index = #{fuceIndex,jdbcType=VARCHAR},
+      fuce_modify_user = #{fuceModifyUser,jdbcType=VARCHAR},
+      fuce_modify_time = #{fuceModifyTime,jdbcType=VARCHAR},
+      fuce_creator_user = #{fuceCreatorUser,jdbcType=VARCHAR},
+      fuce_create_time = #{fuceCreateTime,jdbcType=VARCHAR},
+      fuce_parent_code = #{fuceParentCode,jdbcType=VARCHAR},
+      d_flag = #{dFlag,jdbcType=INTEGER},
+      show_info = #{showInfo,jdbcType=VARCHAR}
+    where fuce_id = #{fuceId,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="getPermissionList" resultMap="BaseResultMap" parameterType="String">
+    SELECT
+    t4.*
+    FROM
+    mmall_sys_role_user t1 -- 角色与用户表
+    LEFT JOIN mmall_sys_role t2 ON t2.role_id = t1.role_id -- 角色表
+    LEFT JOIN mmall_sys_role_fun t3 ON t3.role_id = t2.role_id -- 角色权限表
+    LEFT JOIN mmall_sys_function_cell t4 ON t4.show_info = t3.`code` -- 权限菜单表
+    WHERE
+    t1.user_id = #{0}
+  </select>
+
+</mapper>

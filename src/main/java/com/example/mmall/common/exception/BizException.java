@@ -37,7 +37,7 @@ public class BizException extends RuntimeException {
      * Token 验证不通过
      */
     public static final BizException TOKEN_IS_ILLICIT = new BizException(
-            10040005, "Token 验证非法");
+            10040005, "Token 验证非法或已过期");
     /**
      * 会话超时　获取session时，如果是空，throws 下面这个异常 拦截器会拦截爆会话超时页面
      */

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mmall.mapper.sys.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.mmall.model.sys.SysRole" >
+    <id column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+    <result column="role_creator_user" property="roleCreatorUser" jdbcType="VARCHAR" />
+    <result column="role_creator_time" property="roleCreatorTime" jdbcType="VARCHAR" />
+    <result column="role_modify_user" property="roleModifyUser" jdbcType="VARCHAR" />
+    <result column="role_modify_time" property="roleModifyTime" jdbcType="VARCHAR" />
+    <result column="role_index" property="roleIndex" jdbcType="VARCHAR" />
+    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
+    <result column="d_flag" property="dFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_id, role_name, role_desc, role_creator_user, role_creator_time, role_modify_user, 
+    role_modify_time, role_index, role_code, d_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mmall_sys_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from mmall_sys_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mmall.model.sys.SysRole" >
+    insert into mmall_sys_role (role_id, role_name, role_desc, 
+      role_creator_user, role_creator_time, role_modify_user, 
+      role_modify_time, role_index, role_code, 
+      d_flag)
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{roleCreatorUser,jdbcType=VARCHAR}, #{roleCreatorTime,jdbcType=VARCHAR}, #{roleModifyUser,jdbcType=VARCHAR}, 
+      #{roleModifyTime,jdbcType=VARCHAR}, #{roleIndex,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
+      #{dFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mmall.model.sys.SysRole" >
+    insert into mmall_sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleDesc != null" >
+        role_desc,
+      </if>
+      <if test="roleCreatorUser != null" >
+        role_creator_user,
+      </if>
+      <if test="roleCreatorTime != null" >
+        role_creator_time,
+      </if>
+      <if test="roleModifyUser != null" >
+        role_modify_user,
+      </if>
+      <if test="roleModifyTime != null" >
+        role_modify_time,
+      </if>
+      <if test="roleIndex != null" >
+        role_index,
+      </if>
+      <if test="roleCode != null" >
+        role_code,
+      </if>
+      <if test="dFlag != null" >
+        d_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatorUser != null" >
+        #{roleCreatorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatorTime != null" >
+        #{roleCreatorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleModifyUser != null" >
+        #{roleModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="roleModifyTime != null" >
+        #{roleModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIndex != null" >
+        #{roleIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dFlag != null" >
+        #{dFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mmall.model.sys.SysRole" >
+    update mmall_sys_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        role_desc = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatorUser != null" >
+        role_creator_user = #{roleCreatorUser,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatorTime != null" >
+        role_creator_time = #{roleCreatorTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleModifyUser != null" >
+        role_modify_user = #{roleModifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="roleModifyTime != null" >
+        role_modify_time = #{roleModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleIndex != null" >
+        role_index = #{roleIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dFlag != null" >
+        d_flag = #{dFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mmall.model.sys.SysRole" >
+    update mmall_sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      role_creator_user = #{roleCreatorUser,jdbcType=VARCHAR},
+      role_creator_time = #{roleCreatorTime,jdbcType=VARCHAR},
+      role_modify_user = #{roleModifyUser,jdbcType=VARCHAR},
+      role_modify_time = #{roleModifyTime,jdbcType=VARCHAR},
+      role_index = #{roleIndex,jdbcType=VARCHAR},
+      role_code = #{roleCode,jdbcType=VARCHAR},
+      d_flag = #{dFlag,jdbcType=INTEGER}
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

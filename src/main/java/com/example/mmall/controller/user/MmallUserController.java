@@ -1,7 +1,5 @@
 package com.example.mmall.controller.user;
 
-import com.example.mmall.annotation.AuthToken;
-import com.example.mmall.annotation.PassToken;
 import com.example.mmall.common.msg.CallBackMsg;
 import com.example.mmall.model.user.MmallUser;
 import com.example.mmall.service.user.MmallUserSerice;
@@ -26,7 +24,6 @@ public class MmallUserController {
     @Autowired
     MmallUserSerice mmallUserSerice;
 
-    @AuthToken
     @ResponseBody
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
     public CallBackMsg getUserList(HttpServletRequest request){
@@ -56,7 +53,6 @@ public class MmallUserController {
      * @param userId 用户id
      * @param phone 号码
     */
-    @AuthToken
     @ResponseBody
     @RequestMapping(value = "/updatePhone" , method = RequestMethod.GET)
     public CallBackMsg updatePhone(@RequestParam("userId") String userId,@RequestParam("phone") String phone){

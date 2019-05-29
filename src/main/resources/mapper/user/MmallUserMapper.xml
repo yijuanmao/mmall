@@ -18,7 +18,7 @@
     role
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from mmall_user
     where id = #{id,jdbcType=INTEGER}
@@ -165,8 +165,8 @@
 	create_time DESC
   </select>
 
-  <select id="checkUsername" parameterType="string" resultType="int">
-    select count(1)
+  <select id="checkUsername" parameterType="string" resultMap="BaseResultMap">
+    select *
     from
     mmall_user
     where username = #{username}
@@ -174,18 +174,11 @@
 
   <select id="getUserInfo" parameterType="int" resultMap="BaseResultMap">
     SELECT
-	<include refid="Base_Column_List" />
-  FROM
-      mmall_user
-  WHERE
-  id = #{0}
+    <include refid="Base_Column_List" />
+    FROM
+    mmall_user
+    WHERE
+    id = #{0}
   </select>
 
-  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
-    SELECT
-    <include refid="Base_Column_List" />
-    from mmall_user
-    where username = #{username}
-    and password = #{password}
-  </select>
 </mapper>
