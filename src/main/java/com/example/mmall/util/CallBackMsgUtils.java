@@ -102,4 +102,14 @@ public class CallBackMsgUtils {
         return callBackMsg;
     }
 
+    /**
+     * 未登录返回结果
+     */
+    public static <T> CallBackMsg<T> unauthorized(T data) {
+        CallBackMsg callBackMsg = new CallBackMsg();
+        callBackMsg.setErrcode(ResonceCodeEnum.UNAUTHORIZED.getCode());
+        callBackMsg.setMessage(ResonceCodeEnum.UNAUTHORIZED.getValue());
+        callBackMsg.setDate(data);
+        return callBackMsg;
+    }
 }
