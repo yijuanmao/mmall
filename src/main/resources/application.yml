@@ -39,17 +39,17 @@ spring:
     pool-prepared-statements: false
     max-pool-prepared-statement-per-connection-size: 20
 
-  # redis配置，以下有默认配置的也可以使用默认配置
-  redis:
-    database: 0
-    host: 47.107.115.243
-    password: zy824414828
-    port: 6379
-    timeout: 5000
-    jedis:
-      pool:
-        max-active: 100
-        max-wait: 5000
+# redis配置，以下有默认配置的也可以使用默认配置
+redis:
+  database: 0
+  host: 47.107.115.243
+  password: zy824414828
+  port: 6379
+  timeout: 5000
+  jedis:
+    pool:
+      max-active: 100
+      max-wait: 5000
 
 mybatis:
   mapper-locations: classpath:mapper/**/*Mapper.xml
@@ -62,3 +62,10 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
   returnPageInfo: check
+
+# 自定义jwt key
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 1800 #JWT的超期限时间(60*30)
+  tokenHead: Bearer  #JWT负载中拿到开头
