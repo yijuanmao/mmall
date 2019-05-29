@@ -1,23 +1,26 @@
 package com.example.mmall.service.user.impl;
 
 import com.example.mmall.common.exception.UserBizException;
+import com.example.mmall.mapper.sys.SysFunctionCellMapper;
 import com.example.mmall.mapper.user.MmallUserMapper;
+import com.example.mmall.model.sys.SysFunctionCell;
 import com.example.mmall.model.user.MmallUser;
 import com.example.mmall.service.user.MmallUserSerice;
-import com.example.mmall.util.JwtUtils;
+import com.example.mmall.util.JwtTokenUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.jose4j.jwt.consumer.InvalidJwtException;
-import org.jose4j.lang.JoseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -26,7 +29,11 @@ public class MmallUserSericeImpl implements MmallUserSerice {
     @Resource
     MmallUserMapper mmallUserMapper;
     @Autowired
-    private JwtUtils jwtUtils;
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    SysFunctionCellMapper sysFunctionCellMapper;
 
     @Override
     public boolean insertMmallUser(String username, String password, String email, String phone, String question, String answer, int role) {
@@ -57,9 +64,9 @@ public class MmallUserSericeImpl implements MmallUserSerice {
     }
 
     /** 根据用户id修改用户信息资料
-    * @author zy
-    * @date 9:53 2019/4/8
-    */
+     * @author zy
+     * @date 9:53 2019/4/8
+     */
     @Override
     public boolean updateUserInfo(int userId,String phone) {
         MmallUser mmallUser = new MmallUser();
@@ -71,62 +78,36 @@ public class MmallUserSericeImpl implements MmallUserSerice {
 
     //登陆
     @Override
-    public MmallUser getUserInfo(String username, String password) throws UserBizException{
+    public String login(String username, String password) throws UserBizException{
+        String token = null;
         //查询此账号是否存在
-        int i = mmallUserMapper.checkUsername(username);
-        if(i != 1){
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if(userDetails == null){
             throw new UserBizException(UserBizException.USER_IS_NULL,"用户不存在");
         }
-
         //校验账号密码
-        MmallUser mmallUser = mmallUserMapper.selectLogin(username,password);
-        if(null == mmallUser){
+        if(!password.equals(userDetails.getPassword())){
             throw UserBizException.USER_LOGIN_ERROR;
         }
-        Map<String, Object> userMap = new HashMap<String, Object>();
-        userMap.put("username",mmallUser.getUsername());
-        userMap.put("email",mmallUser.getEmail());
-        userMap.put("phone",mmallUser.getPhone());
-        userMap.put("role",mmallUser.getRole());
-        userMap.put("userId",mmallUser.getId());
-
         try {
-            //生成tokne，保存30分钟
-            String token = jwtUtils.generateToken("S","S",Float.valueOf(60 * 30),userMap);
-            mmallUser.setToken(token);
-            mmallUser.setPassword("");
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            token = jwtTokenUtil.generateToken(userDetails);
 
-            return mmallUser;
-        } catch (JoseException e) {
-            log.error("token生成异常", e);
+        } catch (AuthenticationException e) {
+            log.warn("登录异常:{}", e.getMessage());
         }
-        return null;
+        return token;
     }
 
-    /**
-     * 鉴权
-     *
-     * @param clientId
-     * @param token
-     * @return
-     */
     @Override
-    public Map<String, Object> checkToken(String clientId, String token) throws UserBizException {
-
-        try {
-            Map<String, Object> payLoadMap = jwtUtils.checkToken(token, clientId, clientId);
-            String userId = String.valueOf(payLoadMap.get("userId") == null ? 0 : payLoadMap.get("userId"));
-
-            MmallUser mmallUser = mmallUserMapper.selectByPrimaryKey(Integer.valueOf(userId));
-
-            if (mmallUser == null) {
-                throw UserBizException.USER_LOGIN_ERROR;
-            }
-
-            return payLoadMap;
-        } catch (InvalidJwtException e) {
-            log.error("鉴权失败:", e);
-        }
-        return null;
+    public MmallUser selectByUserName(String userName) {
+        return mmallUserMapper.checkUsername(userName);
     }
+
+    @Override
+    public List<SysFunctionCell> getPermissionList(String userId) {
+        return sysFunctionCellMapper.getPermissionList(userId);
+    }
+
 }

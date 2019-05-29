@@ -1,9 +1,11 @@
 package com.example.mmall.service.user;
 
 import com.example.mmall.common.exception.UserBizException;
+import com.example.mmall.model.sys.SysFunctionCell;
 import com.example.mmall.model.user.MmallUser;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -16,15 +18,12 @@ public interface MmallUserSerice {
 
     boolean updateUserInfo(int userId,String phone);
 
-    MmallUser getUserInfo(String username, String password) throws UserBizException;
+    String login(String username, String password) throws UserBizException;
+
+    MmallUser selectByUserName(String userName);
 
     /**
-     * 鉴权
-     *
-     * @param clientId
-     * @param token
-     * @return
+     * 获取用户所有权限（包括角色权限和+-权限）
      */
-    public Map<String, Object> checkToken(String clientId, String token) throws UserBizException;
-
+    List<SysFunctionCell> getPermissionList(String adminId);
 }
