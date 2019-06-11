@@ -16,7 +16,8 @@ public enum ResonceCodeEnum {
     INVALID_PARAM( 305 , "参数无效" ),
     EXCEPTION(500,"出现异常"),
     NO_RESULT(306,"暂无数据"),
-    UNAUTHORIZED(401, "暂未登录或token已经过期");
+    UNAUTHORIZED(401, "暂未登录或token已经过期"),
+    FORBIDDEN(403, "没有相关权限");
 
 
     private Integer code;

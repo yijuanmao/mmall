@@ -112,4 +112,15 @@ public class CallBackMsgUtils {
         callBackMsg.setDate(data);
         return callBackMsg;
     }
+
+    /**
+     * 未授权返回结果
+     */
+    public static <T> CallBackMsg<T> forbidden(T data) {
+        CallBackMsg callBackMsg = new CallBackMsg();
+        callBackMsg.setErrcode(ResonceCodeEnum.FORBIDDEN.getCode());
+        callBackMsg.setMessage(ResonceCodeEnum.FORBIDDEN.getValue());
+        callBackMsg.setDate(data);
+        return callBackMsg;
+    }
 }
