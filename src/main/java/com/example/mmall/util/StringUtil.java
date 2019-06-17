@@ -1,8 +1,7 @@
 package com.example.mmall.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -12,9 +11,8 @@ import java.util.*;
  * String字符串工具类.
  * @author zy
  */
+@Slf4j
 public final class StringUtil {
-
-	private static final Logger LOG = LoggerFactory.getLogger(StringUtil.class);
 
 	/**
 	 * 私有构造方法,将该工具类设为单例模式.
@@ -177,7 +175,7 @@ public final class StringUtil {
 				// 汉字采用utf-8编码时占3个字节
 				size = content.getBytes("utf-8").length;
 			} catch (UnsupportedEncodingException e) {
-				LOG.error("UnsupportedEncodingException:" , e);
+				log.error("UnsupportedEncodingException:" , e);
 			}
 		}
 		return size;
@@ -295,7 +293,7 @@ public final class StringUtil {
 
 			return new String(sourceStringBytes, targetCodeType);
 		} catch (UnsupportedEncodingException e) {
-			LOG.info("原字符串{} 做编码转换{} ===> {} 异常" ,  sourceString ,  sourceCodeType , targetCodeType);
+			log.info("原字符串{} 做编码转换{} ===> {} 异常" ,  sourceString ,  sourceCodeType , targetCodeType);
 			return null;
 		}
 	}
