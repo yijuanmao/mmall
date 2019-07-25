@@ -8,6 +8,7 @@ import com.example.mmall.util.StringUtil;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ public class MmallUserController {
 
     @ResponseBody
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('pms:user:read')")
     public CallBackMsg getUserList(HttpServletRequest request){
 
         try {
