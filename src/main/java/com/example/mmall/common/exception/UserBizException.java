@@ -1,13 +1,13 @@
 package com.example.mmall.common.exception;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 用户业务异常类
  * @date 14:21 2019/4/9
  * @author：真、二
  */
+@Slf4j
 public class UserBizException extends BizException {
 
 	/** 用户不存在 **/
@@ -27,8 +27,6 @@ public class UserBizException extends BizException {
 
 	public static final UserBizException USER_TYPE_ERROR = new UserBizException(10010008, "用户类型异常！");
 
-	private static final Log LOG = LogFactory.getLog(UserBizException.class);
-
 	public UserBizException() {
 	}
 
@@ -41,7 +39,7 @@ public class UserBizException extends BizException {
 	}
 
 	public UserBizException print() {
-		LOG.info("==>BizException, code:" + this.code + ", msg:" + this.msg);
+		log.info("==>BizException, code:" + this.code + ", msg:" + this.msg);
 		return this;
 	}
 }
