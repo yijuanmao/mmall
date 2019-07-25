@@ -17,8 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +24,7 @@ import java.util.List;
 @Service
 public class MmallUserSericeImpl implements MmallUserSerice {
 
-    @Resource
+    @Autowired
     MmallUserMapper mmallUserMapper;
     @Autowired
     private UserDetailsService userDetailsService;
@@ -94,8 +92,12 @@ public class MmallUserSericeImpl implements MmallUserSerice {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             token = jwtTokenUtil.generateToken(userDetails);
 
+            //保存在redis中
+          /*  if(!StringUtil.isEmpty(token)){
+                RedisClientUtil.set(CommonConst.SERVICE_TOKEN+username,token,30);
+            }*/
         } catch (AuthenticationException e) {
-            log.warn("登录异常:{}", e.getMessage());
+            log.error("登录异常:{}", e.getMessage());
         }
         return token;
     }
