@@ -16,4 +16,9 @@ public class CommonConst {
 
 	//=============================================  用户模块使用redis基本常量   ==============================
 	public static final String USERINFO_REDIS = "userinfo_redis";
+
+
+
+	//=============================================  短信验证码redis基本常量   ==============================
+	public static final String CHECK_CODE_REDIS = "check_code_redis";
 }
