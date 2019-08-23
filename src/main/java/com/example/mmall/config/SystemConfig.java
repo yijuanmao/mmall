@@ -1,5 +1,6 @@
 package com.example.mmall.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +12,8 @@ import java.util.Properties;
 /**
  * 真、二
  */
+@Slf4j
 public class SystemConfig {
-
-    private static Logger logger = LoggerFactory.getLogger(SystemConfig.class);
 
     private static Properties props;
 
@@ -23,7 +23,7 @@ public class SystemConfig {
         try {
             props.load(new InputStreamReader(SystemConfig.class.getClassLoader().getResourceAsStream(fileName),"UTF-8"));
         } catch (IOException e) {
-            logger.error("配置文件读取异常",e);
+            log.error("配置文件读取异常",e);
         }
     }
 
