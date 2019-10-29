@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 /**
- * mq工具类
+ * mq
  * @author 真、二
  * @date 17:02 2019/6/12
  */
@@ -28,9 +28,6 @@ public class RabbitmqConfig {
 	private CachingConnectionFactory connectionFactory;
 	@Autowired
 	private SimpleRabbitListenerContainerFactoryConfigurer factoryConfigurer;
-
-	/**	测试rabbitmq	**/
-	public static String MMALL_RABBTIMQ_TEST__QUEUE = "";
 
 	/**
 	 * 单一消费者
@@ -59,6 +56,10 @@ public class RabbitmqConfig {
 		factoryConfigurer.configure(factory,connectionFactory);
 		factory.setMessageConverter(new Jackson2JsonMessageConverter());
 		factory.setAcknowledgeMode(AcknowledgeMode.NONE);
+
+		String concurrency = env.getProperty("spring.rabbitmq.listener.concurrency");
+		log.info("获取到concurrency内容为：{}",concurrency);
+
 		factory.setConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.concurrency",int.class));
 		factory.setMaxConcurrentConsumers(env.getProperty("spring.rabbitmq.listener.max-concurrency",int.class));
 		factory.setPrefetchCount(env.getProperty("spring.rabbitmq.listener.prefetch",int.class));
@@ -84,7 +85,7 @@ public class RabbitmqConfig {
 			}
 		});
 		return rabbitTemplate;
-
 	}
+
 
 }

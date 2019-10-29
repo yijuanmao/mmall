@@ -1,0 +1,13 @@
+#mq 配置
+mq:
+ env: local
+
+#邮箱发送mq
+mail:
+  queue:
+    name: ${mq.env}.mail.queue
+  exchange:
+    name: ${mq.env}.mail.exchange
+  routing:
+    key:
+      name: ${mq.env}.mail.routing.key
