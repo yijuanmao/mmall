@@ -26,7 +26,6 @@ import java.util.Map;
  */
 @Component
 @Slf4j
-@Scope("prototype")
 public class JwtTokenUtil {
 
     private static final String CLAIM_KEY_USERNAME = "sub";
