@@ -24,19 +24,16 @@ public class RabbitmqMessage {
 	//TODO：发送邮件消息模型
 	@Bean
 	public Queue mailQueue(){
-		log.info("mail.queue.name Query值为：{}",env.getProperty("mail.queue.name"));
 		return new Queue(env.getProperty("mail.queue.name"),true);
 	}
 
 	@Bean
 	public DirectExchange mailExchange(){
-		log.info("mail.exchange.name 通道值为：{}",env.getProperty("mail.exchange.name"));
 		return new DirectExchange(env.getProperty("mail.exchange.name"),true,false);
 	}
 
 	@Bean
 	public Binding mailBinding(){
-		log.info("mail.routing.key.name 交换机值为：{}",env.getProperty("mail.routing.key.name"));
 		return BindingBuilder.bind(mailQueue()).to(mailExchange()).with(env.getProperty("mail.routing.key.name"));
 	}
 
