@@ -2,7 +2,6 @@ package com.example.mmall.util;
 import com.example.mmall.config.MailProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import javax.mail.*;
@@ -25,6 +24,8 @@ public class EmailUtil {
 	/**
 	 * 生成邮件
 	 * @author zhener
+	 * @param	content 邮箱内容
+	 * @param	toEmail 接收人（多个英文逗号隔开：123456@qq.com,123456@qq.com）
 	 * @throws Exception
 	*/
 	public void sendEmail(String toEmail,String content) throws Exception {
