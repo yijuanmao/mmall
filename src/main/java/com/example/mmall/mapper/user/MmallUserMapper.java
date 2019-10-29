@@ -1,6 +1,6 @@
 package com.example.mmall.mapper.user;
 import com.example.mmall.model.user.MmallUser;
-import org.apache.ibatis.annotations.Param;
+//import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,5 +23,5 @@ public interface MmallUserMapper {
 
     MmallUser getUserInfo(int userId);
 
-    MmallUser selectLogin(@Param("username") String username, @Param("password")String password);
+    MmallUser selectLogin(String username, String password);
 }

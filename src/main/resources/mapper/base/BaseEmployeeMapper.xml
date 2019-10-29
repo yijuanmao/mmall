@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mmall.mapper.base.BaseEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.example.mmall.model.base.BaseEmployee" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="employee_name" property="employeeName" jdbcType="VARCHAR" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="entry_time" property="entryTime" jdbcType="DATE" />
+    <result column="resignation_time" property="resignationTime" jdbcType="DATE" />
+    <result column="employee_status" property="employeeStatus" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="manage_location" property="manageLocation" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, creator, modify_time, modifier, is_delete, user_name, employee_name, 
+    location, passwd, birthday, gender, entry_time, resignation_time, employee_status, 
+    email, phone, tel, fax, manage_location
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_employee
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_base_employee
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.mmall.model.base.BaseEmployee" >
+    insert into t_base_employee (id, create_time, creator, 
+      modify_time, modifier, is_delete, 
+      user_name, employee_name, location, 
+      passwd, birthday, gender, 
+      entry_time, resignation_time, employee_status, 
+      email, phone, tel, 
+      fax, manage_location)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{gender,jdbcType=INTEGER}, 
+      #{entryTime,jdbcType=DATE}, #{resignationTime,jdbcType=DATE}, #{employeeStatus,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{manageLocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mmall.model.base.BaseEmployee" >
+    insert into t_base_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="employeeName != null" >
+        employee_name,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="entryTime != null" >
+        entry_time,
+      </if>
+      <if test="resignationTime != null" >
+        resignation_time,
+      </if>
+      <if test="employeeStatus != null" >
+        employee_status,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="manageLocation != null" >
+        manage_location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null" >
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="entryTime != null" >
+        #{entryTime,jdbcType=DATE},
+      </if>
+      <if test="resignationTime != null" >
+        #{resignationTime,jdbcType=DATE},
+      </if>
+      <if test="employeeStatus != null" >
+        #{employeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="manageLocation != null" >
+        #{manageLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mmall.model.base.BaseEmployee" >
+    update t_base_employee
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null" >
+        employee_name = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="entryTime != null" >
+        entry_time = #{entryTime,jdbcType=DATE},
+      </if>
+      <if test="resignationTime != null" >
+        resignation_time = #{resignationTime,jdbcType=DATE},
+      </if>
+      <if test="employeeStatus != null" >
+        employee_status = #{employeeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="manageLocation != null" >
+        manage_location = #{manageLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mmall.model.base.BaseEmployee" >
+    update t_base_employee
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      employee_name = #{employeeName,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      gender = #{gender,jdbcType=INTEGER},
+      entry_time = #{entryTime,jdbcType=DATE},
+      resignation_time = #{resignationTime,jdbcType=DATE},
+      employee_status = #{employeeStatus,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      manage_location = #{manageLocation,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  <!-- 根据搜索条件获取数据 -->
+  <sql id="condition_sql">
+
+    <if test="keyword != null and keyword !=''" >
+      AND ( t1.user_name LIKE connect(#{keyword},'%') OR t1.user_name LIKE connect(#{keyword},'%') OR phone LIKE  connect(#{keyword},'%'))
+    </if>
+
+    <if test="employeeStatus != null and employeeStatus != ''">
+      AND employee_status = #{employeeStatus}
+    </if>
+    <if test="startEntryTime != null and endEntryTime != null">
+      AND entry_time BETWEEN #{startEntryTime,jdbcType=DATE} and #{endEntryTime,jdbcType=DATE}
+    </if>
+    <if test="list != null and list.size >0">
+      AND t2.location IN
+      <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        SELECT t3.location  FROM t_base_organ t3  WHERE t3.location LIKE concat(#{item},'%')
+      </foreach>
+    </if>
+  </sql>
+
+  <select id="getUserInfoList" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT DISTINCT
+    t1.id,
+    t1.user_name,
+    t1.employee_name,
+    t1.gender,
+    t1.entry_time,
+    t1.resignation_time,
+    t1.employee_status,
+    t1.email,
+    t1.phone,
+    t1.manage_location
+    FROM
+    `t_base_employee` t1
+    LEFT JOIN t_base_employee_switch t2 ON t2.employee_id = t1.id
+    <where>
+      t1.is_delete = '0'
+      <include refid="condition_sql" />
+    </where>
+    ORDER BY entry_time DESC
+  </select>
+
+
+  <update id="updateBatchUserNoStatusById" parameterType="java.util.Map">
+    UPDATE t_base_employee
+    SET modify_time = NOW( ),
+    employee_status = #{employeeStatus}
+    WHERE
+    id IN
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+</mapper>

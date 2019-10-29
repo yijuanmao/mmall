@@ -1,14 +1,17 @@
 package com.example.mmall.service.user.impl;
 
 import com.example.mmall.common.exception.UserBizException;
+import com.example.mmall.mapper.base.BaseEmployeeMapper;
 import com.example.mmall.mapper.sys.SysFunctionCellMapper;
 import com.example.mmall.mapper.user.MmallUserMapper;
+import com.example.mmall.model.base.BaseEmployee;
 import com.example.mmall.model.sys.SysFunctionCell;
 import com.example.mmall.model.user.MmallUser;
 import com.example.mmall.service.user.MmallUserSerice;
 import com.example.mmall.util.JwtTokenUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,8 +20,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
 
 @Slf4j
 @Service
@@ -32,6 +35,8 @@ public class MmallUserSericeImpl implements MmallUserSerice {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     SysFunctionCellMapper sysFunctionCellMapper;
+    @Autowired
+    BaseEmployeeMapper baseEmployeeMapper;
 
     @Override
     public boolean insertMmallUser(String username, String password, String email, String phone, String question, String answer, int role) {
@@ -110,6 +115,52 @@ public class MmallUserSericeImpl implements MmallUserSerice {
     @Override
     public List<SysFunctionCell> getPermissionList(String userId) {
         return sysFunctionCellMapper.getPermissionList(userId);
+    }
+
+    @Override
+    public boolean etidBatchUserNoStatusById(int employeeStatus, String[] userIdArr) {
+        try {
+
+            Map<String,Object> map = new HashMap<>();
+            List<String> list = new ArrayList<>();
+            for(int i=0;i<userIdArr.length;i++){
+                String userId = userIdArr[i];
+                list.add(userId);
+            }
+            map.put("list",list);
+            map.put("employeeStatus",employeeStatus);
+            int i = baseEmployeeMapper.updateBatchUserNoStatusById(map);
+            return i>0 ?true:false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public PageInfo<BaseEmployee> selectUserInfoList(String keyword, String employeeStatus, Date startEntryTime,
+                                                     Date endEntryTime, String[] locationArr, int pageNum, int pageSize) {
+
+        Map<String, Object> map = new HashMap<>();
+        List<String> list = new ArrayList<>();
+
+        map.put("keyword", keyword);
+        map.put("employeeStatus", employeeStatus);
+        map.put("startEntryTime", startEntryTime);
+        map.put("endEntryTime", endEntryTime);
+
+        if (!StringUtil.isEmpty(locationArr.toString())) {
+            for (int i = 0; i < locationArr.length; i++) {
+                String location = locationArr[i];
+                list.add(location);
+            }
+        }
+
+        map.put("list", list);
+        PageHelper.startPage(pageNum, pageSize);
+        List<BaseEmployee> listData = baseEmployeeMapper.getUserInfoList(map);
+        PageInfo<BaseEmployee> pageInfo = new PageInfo<>(listData);
+        return pageInfo;
     }
 
 }

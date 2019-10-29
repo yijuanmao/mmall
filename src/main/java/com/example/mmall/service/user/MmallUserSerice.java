@@ -1,12 +1,13 @@
 package com.example.mmall.service.user;
 
 import com.example.mmall.common.exception.UserBizException;
+import com.example.mmall.model.base.BaseEmployee;
 import com.example.mmall.model.sys.SysFunctionCell;
 import com.example.mmall.model.user.MmallUser;
 import com.github.pagehelper.PageInfo;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 
 public interface MmallUserSerice {
@@ -26,4 +27,9 @@ public interface MmallUserSerice {
      * 获取用户所有权限（包括角色权限和+-权限）
      */
     List<SysFunctionCell> getPermissionList(String adminId);
+
+    boolean etidBatchUserNoStatusById(int employeeStatus,String[] userIdArr);
+
+    PageInfo<BaseEmployee> selectUserInfoList(String keyword, String employeeStatus, Date startEntryTime,
+                                              Date endEntryTime, String[] locationArr, int pageNum, int pageSize);
 }
