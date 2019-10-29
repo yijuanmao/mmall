@@ -3,6 +3,13 @@
 server:
   port: 8089
 #  context-path:/mmall
+use-forward-headers: true
+
+#其它设置是让Tomcat去Http头信息去获取协议信息，而不是从HttpServletRequest
+tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+    port-header: X-Forwarded-Port
 
 #配置数据库连接池
 spring:
@@ -17,9 +24,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
     #基本属性
-    username: ####
-    password: ###
-    url: ####
+    username: xxx
+    password: xxx
+    url: jdbc:mysql://xxxxxx:xxx/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
 
     #配置初始化大小/最小/最大
     initial-size: 1
@@ -39,12 +46,40 @@ spring:
     pool-prepared-statements: false
     max-pool-prepared-statement-per-connection-size: 20
 
+  #rabbitmq
+  rabbitmq:
+    host: xxxxxx
+    port: 5672
+#    username: guest
+    username: xxx
+    password: xxx
+    listener:
+      concurrency: 10   #并发消费者的初始化值
+      max-concurrency: 20   #并发消费者的最大值
+      prefetch: 5     #每个消费者每次监听时可拉取处理的消息数量
+
+
+  #邮箱配置
+  mail:
+    port: 465
+    host: smtp.qq.com             # 设置邮箱主机
+    username: xxx@qq.com    # 设置用户名
+    password: xxx    # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
+    default-encoding: utf-8
+    properties:
+      mail.smtp.auth: true        # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+      mail.smtp.starttls.required: true
+      mail.smtp.starttls.enable: true # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信
+      sslClass: javax.net.ssl.SSLSocketFactory
+
+    subject: 来自亲爱的老公邮箱！！
+
 # redis配置，以下有默认配置的也可以使用默认配置
 redis:
   database: 0
-  host: ##
-  password: ##
-  port: ##
+  host: xxx
+  password: xxx
+  port: xxx
   timeout: 5000
   jedis:
     pool:
@@ -69,3 +104,8 @@ jwt:
   secret: mySecret #JWT加解密使用的密钥
   expiration: 1800 #JWT的超期限时间(60*30)
   tokenHead: Bearer  #JWT负载中拿到开头
+
+
+logging:
+  level:
+     com.example.mmall.mapper : debug
