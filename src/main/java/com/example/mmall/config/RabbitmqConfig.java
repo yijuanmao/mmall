@@ -71,13 +71,18 @@ public class RabbitmqConfig {
 		connectionFactory.setPublisherConfirms(true);
 		connectionFactory.setPublisherReturns(true);
 		RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
+
+		// 触发setReturnCallback回调必须设置mandatory=true, 否则Exchange没有找到Queue就会丢弃掉消息, 而不会触发回调
 		rabbitTemplate.setMandatory(true);
+
+		// 消息是否成功发送到Exchange
 		rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
 			@Override
 			public void confirm(CorrelationData correlationData, boolean ack, String cause) {
 				log.info("消息发送成功:correlationData({}),ack({}),cause({})", correlationData, ack, cause);
 			}
 		});
+		// 消息是否从Exchange路由到Queue, 注意: 这是一个失败回调, 只有消息从Exchange路由到Queue失败才会回调这个方法
 		rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
 			@Override
 			public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
