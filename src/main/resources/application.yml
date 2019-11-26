@@ -66,8 +66,8 @@ spring:
   mail:
     port: 465
     host: smtp.qq.com             # 设置邮箱主机
-    username: 824414828@qq.com    # 设置用户名
-    password: jitumzbqhfpbbege    # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
+    username: xxxxxxxx@qq.com    # 设置用户名
+    password: xxxx    # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
     default-encoding: utf-8
     properties:
       mail.smtp.auth: true        # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
