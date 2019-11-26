@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author zhener
  * @date 15:38 2019/10/29
@@ -36,5 +39,4 @@ public class RabbitmqMessage {
 	public Binding mailBinding(){
 		return BindingBuilder.bind(mailQueue()).to(mailExchange()).with(env.getProperty("mail.routing.key.name"));
 	}
-
 }

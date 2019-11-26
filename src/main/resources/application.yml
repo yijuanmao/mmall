@@ -24,9 +24,12 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
     #基本属性
-    username: xxx
-    password: xxx
-    url: jdbc:mysql://xxxxxx:xxx/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: 17B92f93756a
+    url: jdbc:mysql://47.107.115.243:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    username: root
+#    password: asdq7558690
+#    url: jdbc:mysql://localhost:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
 
     #配置初始化大小/最小/最大
     initial-size: 1
@@ -48,11 +51,11 @@ spring:
 
   #rabbitmq
   rabbitmq:
-    host: xxxxxx
+    host: 47.107.115.243
     port: 5672
 #    username: guest
-    username: xxx
-    password: xxx
+    username: admin
+    password: admin
     listener:
       concurrency: 10   #并发消费者的初始化值
       max-concurrency: 20   #并发消费者的最大值
@@ -63,23 +66,22 @@ spring:
   mail:
     port: 465
     host: smtp.qq.com             # 设置邮箱主机
-    username: xxx@qq.com    # 设置用户名
-    password: xxx    # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
+    username: 824414828@qq.com    # 设置用户名
+    password: jitumzbqhfpbbege    # 设置密码，该处的密码是QQ邮箱开启SMTP的授权码而非QQ密码
     default-encoding: utf-8
     properties:
       mail.smtp.auth: true        # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
       mail.smtp.starttls.required: true
       mail.smtp.starttls.enable: true # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信
       sslClass: javax.net.ssl.SSLSocketFactory
-
-    subject: 来自亲爱的老公邮箱！！
+    subject: 这是测试邮箱发送功能！！
 
 # redis配置，以下有默认配置的也可以使用默认配置
 redis:
   database: 0
-  host: xxx
-  password: xxx
-  port: xxx
+  host: 47.107.115.243
+  password: zy824414828
+  port: 6379
   timeout: 5000
   jedis:
     pool:
@@ -105,7 +107,6 @@ jwt:
   expiration: 1800 #JWT的超期限时间(60*30)
   tokenHead: Bearer  #JWT负载中拿到开头
 
-
 logging:
   level:
-     com.example.mmall.mapper : debug
+     com.example.mmall.mapper : info

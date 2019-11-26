@@ -16,11 +16,11 @@ import java.util.List;
 @Slf4j
 public class OssUtil {
 
-	private static String endpoint = "xxxxxx";
-	private static String accessKeyId = "xxxxx";
-	private static String accessKeySecret = "xxxx";
-	private static String bucketName = "xxx";
-	private static String filedir = "xxx";
+	private static String endpoint = "https://oss-cn-shenzhen.aliyuncs.com";
+	private static String accessKeyId = "LTAI4Fn2jT7YtdXtvm37KuWj";
+	private static String accessKeySecret = "Kk14Vkv5cqGZqMpOthCj5eeqOeOx0i";
+	private static String bucketName = "juanmaoxiong";
+	private static String filedir = "img";
 
 	// 您的回调服务器地址，如http://oss-demo.aliyuncs.com:23450或http://127.0.0.1:9090。
 	String callbackUrl = "<yourCallbackServerUrl>";
@@ -39,8 +39,8 @@ public class OssUtil {
 			}
 
 			// 上传内容到指定的存储空间（bucketName）并保存为指定的文件名称（objectName）。
-			String fileKey = filedir +"/test.jpeg";
-			ossClient.putObject(bucketName, fileKey, new File("D:\\dear.jpg"));
+			String fileKey = filedir +"/test.png";
+			ossClient.putObject(bucketName, fileKey, new File("C:\\Users\\Administrator\\Downloads\\01_year_end_theme.png"));
 
 			System.out.println("Object：" + fileKey + "存入OSS成功。");
 			ObjectListing objectListing = ossClient.listObjects(bucketName);

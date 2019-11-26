@@ -1,5 +1,7 @@
 package com.example.mmall.util;
 
+import java.util.UUID;
+
 /**
  * 随机数生成工具类
  *
@@ -58,5 +60,11 @@ public class RandomUtil {
 		}
 		return str2;
 	}
+
+	public static String UUID32() {
+		String str = UUID.randomUUID().toString();
+		return str.replaceAll("-", "");
+	}
+
 
 }

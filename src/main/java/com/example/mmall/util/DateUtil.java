@@ -1,6 +1,7 @@
 package com.example.mmall.util;
 
 import org.apache.commons.lang.StringUtils;
+import org.joda.time.DateTime;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -657,6 +658,39 @@ public class DateUtil {
 		GregorianCalendar calendar = new GregorianCalendar();
 		calendar.setTime(nowDate);
 		return calendar.get(GregorianCalendar.AM_PM);
+	}
+
+	/**
+	 * 加减分钟
+	 *
+	 * @param date
+	 * @param minutes
+	 * @param type    0:加分钟 1:减分钟
+	 * @return
+	 */
+	private static Date plusOrMinusMinutes(Date date, int minutes, Integer type) {
+		if (null == date) {
+			return null;
+		}
+		DateTime dateTime = new DateTime(date);
+		if (type == 0) {
+			dateTime = dateTime.plusMinutes(minutes);
+		} else {
+			dateTime = dateTime.minusMinutes(minutes);
+		}
+
+		return dateTime.toDate();
+	}
+
+	/**
+	 * 日期加分钟
+	 *
+	 * @param date
+	 * @param minutes
+	 * @return
+	 */
+	public static Date plusMinutes(Date date, int minutes) {
+		return plusOrMinusMinutes(date, minutes, 0);
 	}
 
 }
