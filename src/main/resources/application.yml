@@ -26,7 +26,7 @@ spring:
     #基本属性
     username: root
     password: 17B92f93756a
-    url: jdbc:mysql://47.107.115.243:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://4xxxxxxxxx3:3306/xxxxx?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
 #    username: root
 #    password: asdq7558690
 #    url: jdbc:mysql://localhost:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
@@ -51,11 +51,11 @@ spring:
 
   #rabbitmq
   rabbitmq:
-    host: 47.107.115.243
-    port: 5672
+    host: xxxxxx
+    port: xxx
 #    username: guest
-    username: admin
-    password: admin
+    username: xx
+    password: xx
     listener:
       concurrency: 10   #并发消费者的初始化值
       max-concurrency: 20   #并发消费者的最大值
@@ -79,9 +79,9 @@ spring:
 # redis配置，以下有默认配置的也可以使用默认配置
 redis:
   database: 0
-  host: 47.107.115.243
-  password: zy824414828
-  port: 6379
+  host: xxxxx3
+  password: xxx
+  port: xxxx
   timeout: 5000
   jedis:
     pool:
