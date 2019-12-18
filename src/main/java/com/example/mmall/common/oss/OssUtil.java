@@ -16,11 +16,11 @@ import java.util.List;
 @Slf4j
 public class OssUtil {
 
-	private static String endpoint = "https://oss-cn-shenzhen.aliyuncs.com";
-	private static String accessKeyId = "LTAI4Fn2jT7YtdXtvm37KuWj";
-	private static String accessKeySecret = "Kk14Vkv5cqGZqMpOthCj5eeqOeOx0i";
-	private static String bucketName = "juanmaoxiong";
-	private static String filedir = "img";
+	private static String endpoint = "xxxxxxxxxxxxxxx";
+	private static String accessKeyId = "xxxxxxxxxxxxxxx";
+	private static String accessKeySecret = "xxxxxxxxxxxxxxx";
+	private static String bucketName = "xxxxxxxxxxxxxxx";
+	private static String filedir = "xxxxxxxxxxxxxxx";
 
 	// 您的回调服务器地址，如http://oss-demo.aliyuncs.com:23450或http://127.0.0.1:9090。
 	String callbackUrl = "<yourCallbackServerUrl>";
