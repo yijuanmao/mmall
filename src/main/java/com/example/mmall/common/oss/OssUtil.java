@@ -16,13 +16,13 @@ import java.util.List;
 @Slf4j
 public class OssUtil {
 
-	private static String endpoint = "xxxxxxxxxxxxxxx";
-	private static String accessKeyId = "xxxxxxxxxxxxxxx";
-	private static String accessKeySecret = "xxxxxxxxxxxxxxx";
-	private static String bucketName = "xxxxxxxxxxxxxxx";
-	private static String filedir = "xxxxxxxxxxxxxxx";
+	private static String endpoint = ;
+	private static String accessKeyId = ;
+	private static String accessKeySecret = "";
+	private static String bucketName = "";
+	private static String filedir = "";
 
-	// 您的回调服务器地址，如http://oss-demo.aliyuncs.com:23450或http://127.0.0.1:9090。
+	// 您的回调服务器地址。
 	String callbackUrl = "<yourCallbackServerUrl>";
 
 	public static void main(String[] args) {
